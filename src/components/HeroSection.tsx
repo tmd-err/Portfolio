@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowDown, Github, Linkedin, Mail } from 'lucide-react';
+import { ArrowDown, Github, Linkedin, Mail, Download } from 'lucide-react';
 import NetworkBackground from './NetworkBackground';
 import { Button } from '@/components/ui/button';
 import { useTypewriter } from '@/hooks/useTypewriter';
@@ -7,6 +7,15 @@ import { useTypewriter } from '@/hooks/useTypewriter';
 const HeroSection: React.FC = () => {
   const scrollToProjects = () => {
     document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  const downloadCV = () => {
+    const link = document.createElement('a');
+    link.href = '/src/assets/cv.pdf';
+    link.download = 'Yahya_Tamda_CV.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
 
   const { text: currentRole } = useTypewriter({
@@ -51,6 +60,15 @@ const HeroSection: React.FC = () => {
             >
               View My Work
               <ArrowDown className="ml-2 h-4 w-4 group-hover:translate-y-1 transition-transform" />
+            </Button>
+            
+            <Button 
+              onClick={downloadCV}
+              variant="outline"
+              className="group border-primary/30 hover:border-primary hover:bg-primary/10 transition-all duration-300"
+            >
+              Download CV
+              <Download className="ml-2 h-4 w-4 group-hover:scale-110 transition-transform" />
             </Button>
             
             <div className="flex space-x-4">
